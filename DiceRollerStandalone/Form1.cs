@@ -22,7 +22,8 @@ namespace DiceRollerStandalone
         int numD10;
         int numD12;
         int numD20;
-        int numDcustom;
+        int numDcustomDimension;
+        int numDquant;
 
         public Form1()
         {
@@ -50,11 +51,13 @@ namespace DiceRollerStandalone
         }
 
         //Boolean Validation function to check each number before rolling them
-        bool Validate(int quant)
+        //Similar to int.TryParse and even uses it, but prevents the number from being a negative
+        bool Validate(string input)
         {
-            if (quant >= 1)
+            //check if supplied number in string format is parsable
+            if (int.TryParse(input, out int result))
             {
-                if (int.TryParse(quant.ToString(), out int result))
+                if (result >= 1)
                 {
                     return true;
                 }
@@ -101,75 +104,51 @@ namespace DiceRollerStandalone
             Implement entire program as a tab in DMHelper program
             */
 
-            //Initialize a quantity for every dimension available            
-
-            if (txtD4.Text != "")
+            //Validate Every Input box to determine what is being rolled, then roll each valid option
+            if (Validate(txtD4.Text))
             {
                 numD4 = int.Parse(txtD4.Text);
+                Randomize(numD4, 4);
             }
-
-            if (txtD6.Text != "")
+            if (Validate(txtD6.Text))
             {
                 numD6 = int.Parse(txtD6.Text);
+                Randomize(numD6, 6);
             }
-            if (txtD8.Text != "")
+            if (Validate(txtD8.Text))
             {
                 numD8 = int.Parse(txtD8.Text);
+                Randomize(numD8, 8);
             }
-            if (txtD10.Text != "")
+            if (Validate(txtD10.Text))
             {
                 numD10 = int.Parse(txtD10.Text);
+                Randomize(numD10, 10);
             }
-            if (txtD12.Text != "")
+            if (Validate(txtD12.Text))
             {
                 numD12 = int.Parse(txtD12.Text);
+                Randomize(numD12, 12);
             }
-            if (txtD20.Text != "")
+            if (Validate(txtD20.Text))
             {
                 numD20 = int.Parse(txtD20.Text);
+                Randomize(numD20, 20);
+            }
+            //validate both dimension, and then quantity for custom dice before rolling it
+            if (Validate(txtDdimen.Text))
+            {
+                if (Validate(txtDquant.Text))
+                {
+                    numDcustomDimension = int.Parse(txtDdimen.Text);
+                    numDquant = int.Parse(txtDquant.Text);
+                    Randomize(numDquant, numDcustomDimension);
+                }
             }
 
             //Initialize total number of selected dice in every quantity
             numDiceTotal = (numD4 + numD6 + numD8 + numD10 + numD12 + numD20);
 
-  
-                if (Validate(numD4))
-                {
-                    Randomize(numD4, 4);
-                }
-
-                if (Validate(numD6))
-                {
-                    Randomize(numD6, 6);
-                }
-
-                if (Validate(numD8))
-                {
-                    Randomize(numD8, 8);
-                }
-
-                if (Validate(numD10))
-                {
-                    Randomize(numD10, 10);
-                }
-
-                if (Validate(numD12))
-                {
-                    Randomize(numD12, 12);
-                }
-
-                if (Validate(numD20))
-                {
-                    Randomize(numD20, 20);
-                }
-
-
-            //for loop to perform per dimension per quantity
-
-
-            //custom roll for loop per quantity
-
-            //randomize per dimension 
         }
 
         private void txtD4_TextChanged(object sender, EventArgs e)
@@ -201,6 +180,16 @@ namespace DiceRollerStandalone
         }
 
         private void txtD20_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDdimen_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDquant_TextChanged(object sender, EventArgs e)
         {
 
         }
