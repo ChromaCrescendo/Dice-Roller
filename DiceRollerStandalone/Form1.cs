@@ -22,8 +22,15 @@ namespace DiceRollerStandalone
         int numD10;
         int numD12;
         int numD20;
-        int numDcustomDimension;
         int numDquant;
+        //dimensions declared for custom die
+        int numDcustomDimension;
+        //bool for if user is using custom dice; unused
+        //bool CustomUsed = false;
+
+        //store default values for the custom die textboxes
+        string Default1 = "Custom Dimension";
+        string Default2 = "Custom Quantity";
 
         public Form1()
         {
@@ -39,15 +46,16 @@ namespace DiceRollerStandalone
             //increment chosen dimension so max value of roll is not truncated
             dimen++;
 
+            //New Random number, created every Randomize(), placed right before for-loop to work properly
             Random r = new Random();
 
             //for loop per quantity of rolls with that die
             for (int i = 0; i < quant; i ++)
-            {
+            {//output to textbox a random number from one to max dimensions available
                 txtOutput.Text += (r.Next(1, dimen) + ", ");
             }
-
-            txtOutput.Text += "\r\n";
+            //Add new line after rolling all of one dice type
+            txtOutput.Text += "\r\n\n";
         }
 
         //Boolean Validation function to check each number before rolling them
@@ -56,7 +64,7 @@ namespace DiceRollerStandalone
         {
             //check if supplied number in string format is parsable
             if (int.TryParse(input, out int result))
-            {
+            {//check if the number is not a negative or a zero to be valid
                 if (result >= 1)
                 {
                     return true;
@@ -192,6 +200,61 @@ namespace DiceRollerStandalone
         private void txtDquant_TextChanged(object sender, EventArgs e)
         {
 
+        }
+        //For both custom text fields, on mouse click, if set to defaul text value, clear it for immediate typing from user
+        private void txtDdimen_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (txtDdimen.Text == Default1)
+            {
+                txtDdimen.Text = "";
+            }
+        }
+
+        private void txtDquant_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (txtDquant.Text == Default2)
+            {
+                txtDquant.Text = "";
+            }
+        }
+        //For both custom text fields, on focus leave, tell them what they did wrong and reset to default, or if nothing was entered, reset to default
+        private void txtDdimen_Leave(object sender, EventArgs e)
+        {
+            if (Validate(txtDdimen.Text) != true && txtDdimen.Text != "")
+            {
+                MessageBox.Show("Make sure your custom dice dimensions(sides) is not a negative, and higher than zero");
+                txtDdimen.Text = Default1;
+            }
+            else if (txtDdimen.Text == "")
+            {
+                txtDdimen.Text = Default1;
+            }
+        }
+
+        private void txtDquant_Leave(object sender, EventArgs e)
+        {
+            if (Validate(txtDquant.Text) != true && txtDquant.Text != "")
+            {
+                MessageBox.Show("Make sure your custom dice quantity is not a negative, and higher than zero");
+                txtDquant.Text = Default2;
+            }
+            else if (txtDquant.Text == "")
+            {
+                txtDquant.Text = Default2;
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtD4.Text = "";
+            txtD6.Text = "";
+            txtD8.Text = "";
+            txtD10.Text = "";
+            txtD12.Text = "";
+            txtD20.Text = "";
+            txtDdimen.Text = "";
+            txtDquant.Text = "";
+            txtOutput.Text = "";
         }
     }
 }
