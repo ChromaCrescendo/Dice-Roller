@@ -32,6 +32,8 @@ namespace DiceRollerStandalone
         string Default1 = "Custom Dimension";
         string Default2 = "Custom Quantity";
 
+        int SumTotal;
+
         /*bool rolled = false;
         bool FinishedRolls = false;*/
 
@@ -40,11 +42,15 @@ namespace DiceRollerStandalone
             InitializeComponent();
         }
 
-        void Randomize(int quant, int dimen)
+        //Randomize function for rolling dice and printing output both
+        private void Randomize(int quant, int dimen)
         {
+            //set up a sub total for private use
+            int subTotal = 0;
+
             //Add D followed by chosen dimension to prefix roll in text box
             //Before increment so correct value is displayed
-            txtOutput.Text += ("D" + dimen.ToString() + ": ");
+            txtOutput.Text += ("d" + dimen.ToString() + ": ");
 
             //increment chosen dimension so max value of roll is not truncated
             dimen++;
@@ -54,20 +60,29 @@ namespace DiceRollerStandalone
 
             //for loop per quantity of rolls with that die
             for (int i = 0; i < quant; i++)
-            {//output to textbox a random number from one to max dimensions available
-                txtOutput.Text += (r.Next(1, dimen));
-                //only add comma if there's another roll coming
+            {//store rolled number in private int for reference
+                int rolledNum = (r.Next(1, dimen));
+                //output to textbox a random number from one to max dimensions available
+                txtOutput.Text += rolledNum;
+                //add to sub total
+                subTotal += rolledNum;
+                //only add plus if there's another roll coming
                 if (i < (quant - 1))
                 {
-                    txtOutput.Text += ", ";
+                    txtOutput.Text += "+";
                 }
+            }
+            if (quant > 1)
+            {
+                //add equals sign and sub total
+                txtOutput.Text += ("=" + subTotal);
             }
             //Add new line after rolling all of one dice type
             txtOutput.Text += "\r\n";
         }
 
         //Boolean Validation function to check each number before rolling them
-        //Similar to int.TryParse and even uses it, but prevents the number from being a negative
+        //Similar to int.TryParse and even uses it, but prevents the number from being a negative whole number
         bool Validate(string input)
         {
             //check if supplied number in string format is parsable
@@ -264,7 +279,8 @@ namespace DiceRollerStandalone
             txtD20.Text = "";
             txtDdimen.Text = Default1;
             txtDquant.Text = Default2;
-            txtOutput.Text = "";
+            //no longer clears output, commented out
+            //txtOutput.Text = "";
         }
     }
 }
