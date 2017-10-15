@@ -32,6 +32,9 @@ namespace DiceRollerStandalone
         string Default1 = "Custom Dimension";
         string Default2 = "Custom Quantity";
 
+        /*bool rolled = false;
+        bool FinishedRolls = false;*/
+
         public Form1()
         {
             InitializeComponent();
@@ -50,12 +53,17 @@ namespace DiceRollerStandalone
             Random r = new Random();
 
             //for loop per quantity of rolls with that die
-            for (int i = 0; i < quant; i ++)
+            for (int i = 0; i < quant; i++)
             {//output to textbox a random number from one to max dimensions available
-                txtOutput.Text += (r.Next(1, dimen) + ", ");
+                txtOutput.Text += (r.Next(1, dimen));
+                //only add comma if there's another roll coming
+                if (i < (quant - 1))
+                {
+                    txtOutput.Text += ", ";
+                }
             }
             //Add new line after rolling all of one dice type
-            txtOutput.Text += "\r\n\n";
+            txtOutput.Text += "\r\n";
         }
 
         //Boolean Validation function to check each number before rolling them
@@ -107,10 +115,15 @@ namespace DiceRollerStandalone
 
         private void btnGen_Click(object sender, EventArgs e)
         {
-            /*TODO: make a for loop to go through each quanity selected
-            Make another for loop inside that for loop, to randomize the dimensions selected
+            /*TODO:
             Implement entire program as a tab in DMHelper program
             */
+
+            //add a new line to seperate rolls if rolls textbox not empty
+            if (txtOutput.Text.Length > 0)
+            {
+                txtOutput.Text += "\r\n";
+            }
 
             //Validate Every Input box to determine what is being rolled, then roll each valid option
             if (Validate(txtD4.Text))
@@ -155,16 +168,13 @@ namespace DiceRollerStandalone
             }
 
             //Initialize total number of selected dice in every quantity
-            numDiceTotal = (numD4 + numD6 + numD8 + numD10 + numD12 + numD20);
+            numDiceTotal = (numD4 + numD6 + numD8 + numD10 + numD12 + numD20 + numDquant);
 
         }
 
         private void txtD4_TextChanged(object sender, EventArgs e)
         {
-           /* if (txtD4.Text != "")
-            {
-                numD4 = int.Parse(txtD4.Text);
-            }*/
+
         }
 
         private void txtD6_TextChanged(object sender, EventArgs e)
@@ -222,7 +232,7 @@ namespace DiceRollerStandalone
         {
             if (Validate(txtDdimen.Text) != true && txtDdimen.Text != "")
             {
-                MessageBox.Show("Make sure your custom dice dimensions(sides) is not a negative, and higher than zero");
+                MessageBox.Show("Make sure your custom dice dimensions (sides) is not a negative, and higher than zero");
                 txtDdimen.Text = Default1;
             }
             else if (txtDdimen.Text == "")
@@ -252,8 +262,8 @@ namespace DiceRollerStandalone
             txtD10.Text = "";
             txtD12.Text = "";
             txtD20.Text = "";
-            txtDdimen.Text = "";
-            txtDquant.Text = "";
+            txtDdimen.Text = Default1;
+            txtDquant.Text = Default2;
             txtOutput.Text = "";
         }
     }
