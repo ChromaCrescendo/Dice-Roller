@@ -14,7 +14,7 @@ namespace DiceRollerStandalone
     {
         //Global Vars
         //Total quantity of dice to roll for every chosen dimension
-        int numDiceTotal;
+        //int numDiceTotal;
         //Total quantity declared per dimension
         int numD4;
         int numD6;
@@ -32,7 +32,7 @@ namespace DiceRollerStandalone
         string Default1 = "Custom Dimension";
         string Default2 = "Custom Quantity";
 
-        int SumTotal;
+        //int SumTotal;
 
         /*bool rolled = false;
         bool FinishedRolls = false;*/
@@ -48,12 +48,13 @@ namespace DiceRollerStandalone
             //set up a sub total for private use
             int subTotal = 0;
 
-            //Add D followed by chosen dimension to prefix roll in text box
-            //Before increment so correct value is displayed
-            txtOutput.Text += ("d" + dimen.ToString() + ": ");
+            //Add D followed by chosen dimension to prefix roll in text box.
+            //Postfix incrementation on dimen so max value of roll is not truncated
+            //but correct value is displayed on d, incrementation is applied after this instruction
+            txtOutput.Text += ("d" + dimen++.ToString() + ": ");
 
             //increment chosen dimension so max value of roll is not truncated
-            dimen++;
+            //dimen++;
 
             //New Random number, created every Randomize(), placed right before for-loop to work properly
             Random r = new Random();
@@ -183,7 +184,7 @@ namespace DiceRollerStandalone
             }
 
             //Initialize total number of selected dice in every quantity
-            numDiceTotal = (numD4 + numD6 + numD8 + numD10 + numD12 + numD20 + numDquant);
+            //numDiceTotal = (numD4 + numD6 + numD8 + numD10 + numD12 + numD20 + numDquant);
 
         }
 
