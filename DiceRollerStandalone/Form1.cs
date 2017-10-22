@@ -51,10 +51,8 @@ namespace DiceRollerStandalone
             //Add D followed by chosen dimension to prefix roll in text box.
             //Postfix incrementation on dimen so max value of roll is not truncated
             //but correct value is displayed on d, incrementation is applied after this instruction
-            txtOutput.Text += ("d" + dimen++.ToString() + ": ");
-
-            //increment chosen dimension so max value of roll is not truncated
-            //dimen++;
+            //now using string builder instead of textbox+=string to increase efficiency
+            StringBuilder sbRolls = new StringBuilder("d" + dimen++.ToString() + ": ");
 
             //New Random number, created every Randomize(), placed right before for-loop to work properly
             Random r = new Random();
@@ -64,22 +62,23 @@ namespace DiceRollerStandalone
             {//store rolled number in private int for reference
                 int rolledNum = (r.Next(1, dimen));
                 //output to textbox a random number from one to max dimensions available
-                txtOutput.Text += rolledNum;
+                sbRolls.Append(rolledNum);
                 //add to sub total
                 subTotal += rolledNum;
                 //only add plus if there's another roll coming
                 if (i < (quant - 1))
                 {
-                    txtOutput.Text += "+";
+                    sbRolls.Append("+");
                 }
             }
             if (quant > 1)
             {
                 //add equals sign and sub total
-                txtOutput.Text += ("=" + subTotal);
+                sbRolls.Append("=" + subTotal);
             }
             //Add new line after rolling all of one dice type
-            txtOutput.Text += "\r\n";
+            sbRolls.Append("\r\n");
+            txtOutput.Text += sbRolls;
         }
 
         //Boolean Validation function to check each number before rolling them
