@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace DiceRollerStandalone
 {
@@ -281,6 +282,53 @@ namespace DiceRollerStandalone
             txtDquant.Text = Default2;
             //no longer clears output, commented out
             //txtOutput.Text = "";
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.Filter = "Text (*.txt)|*.txt";
+            if (System.Windows.Forms.DialogResult.OK == savefile.ShowDialog())
+            {
+                //try to save file at path chosen in save file dialog
+                try
+                {
+                    string filePath = savefile.FileName;
+                    File.WriteAllText(filePath, txtOutput.Text);
+                    MessageBox.Show("File Written to: " + filePath);
+                }
+                //throw error message for every exception
+                catch (Exception error)
+                {
+                    MessageBox.Show(error.Message);
+                }
+            }
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string[] inputs = { txtD4.Text, txtD6.Text, txtD8.Text, txtD10.Text, txtD12.Text, txtD20.Text, txtDquant.Text, txtDdimen.Text };
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.Filter = "Text (*.txt)|*.txt";
+            if (System.Windows.Forms.DialogResult.OK == savefile.ShowDialog())
+            {
+                //try to save file at path chosen in save file dialog
+                try
+                {
+                    string filePath = savefile.FileName;
+                    System.IO.StreamWriter SaveFile = new System.IO.StreamWriter(filePath);
+                    foreach (string item in inputs)
+                    {
+                        SaveFile.WriteLine(item);
+                    }
+                    MessageBox.Show("File Written to: " + filePath);
+                }
+                //throw error message for every exception
+                catch (Exception error)
+                {
+                    MessageBox.Show(error.Message);
+                }
+            }
         }
     }
 }
