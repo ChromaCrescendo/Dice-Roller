@@ -14,8 +14,8 @@ namespace DiceRollerStandalone
     public partial class Form1 : Form
     {
         //Global Vars
-        //Total quantity of dice to roll for every chosen dimension
-        //int numDiceTotal;
+        //number of dice types rolled per calculation, for use with sum total
+        int NumTypesRolled;
         //Total quantity declared per dimension
         int numD4;
         int numD6;
@@ -33,7 +33,7 @@ namespace DiceRollerStandalone
         string Default1 = "Custom Dimension";
         string Default2 = "Custom Quantity";
 
-        //int SumTotal;
+        int SumTotal;
 
         /*bool rolled = false;
         bool FinishedRolls = false;*/
@@ -48,6 +48,7 @@ namespace DiceRollerStandalone
         {
             //set up a sub total for private use
             int subTotal = 0;
+            NumTypesRolled += 1;
 
             //Add D followed by chosen dimension to prefix roll in text box.
             //Postfix incrementation on dimen so max value of roll is not truncated
@@ -80,6 +81,7 @@ namespace DiceRollerStandalone
             //Add new line after rolling all of one dice type
             sbRolls.Append("\r\n");
             txtOutput.Text += sbRolls;
+            SumTotal += subTotal;
         }
 
         //Boolean Validation function to check each number before rolling them
@@ -135,6 +137,10 @@ namespace DiceRollerStandalone
             Implement entire program as a tab in DMHelper program
             */
 
+            //Reset sum total and number of types of dice rolled each button press
+            SumTotal = 0;
+            NumTypesRolled = 0;
+
             //add a new line to seperate rolls if rolls textbox not empty
             if (txtOutput.Text.Length > 0)
             {
@@ -185,6 +191,12 @@ namespace DiceRollerStandalone
 
             //Initialize total number of selected dice in every quantity
             //numDiceTotal = (numD4 + numD6 + numD8 + numD10 + numD12 + numD20 + numDquant);
+
+            //If rolling two or more dice display a sum total
+            if (NumTypesRolled >= 2)
+            {
+                txtOutput.Text += "Sum Total=" + SumTotal + "\r\n";
+            }
 
         }
 
