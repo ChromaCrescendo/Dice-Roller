@@ -43,10 +43,130 @@ namespace DiceRollerStandalone
             InitializeComponent();
         }
 
-        //Randomize function for rolling dice and printing output both
-        private void Randomize(int quant, int dimen)
+        void ChangeTheme(int themeNum)
         {
-            //set up a sub total for private use
+            //bool bgImgUsed;
+            switch (themeNum)
+            {
+                //Default theme
+                case 0:
+                    defaultToolStripMenuItem.Checked = true;
+                    darkToolStripMenuItem.Checked = false;
+                    whiteToolStripMenuItem.Checked = false;
+
+                    Form1.ActiveForm.BackColor = SystemColors.Control;
+                    //tableLayoutPanel1.BackColor = SystemColors.Control;
+                    Form1.ActiveForm.ForeColor = Color.Black;
+                    menuStrip1.BackColor = SystemColors.Control;
+                    this.BackgroundImage = null;
+                    /*toolStrip1.BackColor = SystemColors.Control;
+                    toolStrip1.ForeColor = Color.Black;
+
+                    tbPack.ForeColor = Color.Black;
+                    tbPack.BackColor = Color.White;
+                    lbPossibles.ForeColor = Color.Black;
+                    lbPossibles.BackColor = Color.White;
+                    lbDraws.ForeColor = Color.Black;
+                    lbDraws.BackColor = Color.White;
+                    //Form1.ActiveForm.BackColor = menuStrip1.BackColor
+                    tableLayoutPanel1.BackgroundImage = null;
+                    tableLayoutPanel1.ForeColor = Color.Black;
+                    tableLayoutPanel1.BackColor = SystemColors.Control;*/
+
+                    break;
+                //Dark marble theme
+                case 1:
+                    darkToolStripMenuItem.Checked = true;
+                    whiteToolStripMenuItem.Checked = false;
+                    defaultToolStripMenuItem.Checked = false;
+
+                    menuStrip1.BackColor = Color.Transparent;
+                    /*lbDraws.BackColor = SystemColors.ControlDarkDark;
+                    lbPossibles.BackColor = SystemColors.ControlDarkDark;
+                    tbPack.BackColor = SystemColors.ControlDarkDark;
+                    tbPack.ForeColor = Color.WhiteSmoke;
+                    lbDraws.ForeColor = Color.WhiteSmoke;
+                    lbPossibles.ForeColor = Color.WhiteSmoke;
+                    tbPack.BorderStyle = BorderStyle.FixedSingle;
+                    lbDraws.BorderStyle = BorderStyle.FixedSingle;
+                    lbPossibles.BorderStyle = BorderStyle.FixedSingle;*/
+                    this.BackgroundImage = global::DiceRollerStandalone.Properties.Resources.black;
+                    //tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+                    //tableLayoutPanel1.ForeColor = Color.WhiteSmoke;
+                    //btnGen.BackgroundImage = global::PackGenCsharp.Properties.Resources.marble_black;
+                    //btnPick.BackgroundImage = global::PackGenCsharp.Properties.Resources.marble_black;
+                    btnClear.FlatStyle = FlatStyle.Popup;
+                    btnGen.FlatStyle = FlatStyle.Popup;
+                    //btnPick.BackgroundImageLayout = BackgroundImageLayout.Center*/
+
+                    break;
+                //White Marble theme
+                case 2:
+                    whiteToolStripMenuItem.Checked = true;
+                    defaultToolStripMenuItem.Checked = false;
+                    darkToolStripMenuItem.Checked = false;
+
+                    menuStrip1.BackColor = Color.Transparent;
+                    /*lbDraws.BackColor = Color.White;
+                    lbPossibles.BackColor = Color.White;
+                    tbPack.BackColor = Color.White;
+                    tbPack.ForeColor = Color.Black;
+                    lbDraws.ForeColor = Color.Black;
+                    lbPossibles.ForeColor = Color.Black;
+                    tbPack.BorderStyle = BorderStyle.FixedSingle;
+                    lbDraws.BorderStyle = BorderStyle.FixedSingle;
+                    lbPossibles.BorderStyle = BorderStyle.FixedSingle;
+                    tableLayoutPanel1.BackgroundImage = global::PackGenCsharp.Properties.Resources.marble_white;
+                    tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+                    tableLayoutPanel1.ForeColor = Color.Black;
+                    //btnGen.BackgroundImage = global::PackGenCsharp.Properties.Resources.marble_black;
+                    //btnPick.BackgroundImage = global::PackGenCsharp.Properties.Resources.marble_black;*/
+                    btnGen.FlatStyle = FlatStyle.Popup;
+                    btnClear.FlatStyle = FlatStyle.Popup;
+                    //btnPick.BackgroundImageLayout = BackgroundImageLayout.Center
+                    this.BackgroundImage = global::DiceRollerStandalone.Properties.Resources.white;
+                    break;
+            }
+            //waterfall the form1 back color and fore color to other controls
+            /*tbPack.ForeColor = Form1.ActiveForm.ForeColor;
+            tbPack.BackColor = Form1.ActiveForm.BackColor;
+            lbPossibles.ForeColor = Form1.ActiveForm.ForeColor;
+            lbPossibles.BackColor = Form1.ActiveForm.BackColor;
+            lbDraws.ForeColor = Form1.ActiveForm.ForeColor;
+            lbDraws.BackColor = Form1.ActiveForm.BackColor;
+            btnPick.ForeColor = Form1.ActiveForm.ForeColor;
+            btnPick.BackColor = Form1.ActiveForm.BackColor;
+            btnGen.ForeColor = Form1.ActiveForm.ForeColor;
+            btnGen.BackColor = Form1.ActiveForm.BackColor;
+            toolStrip1.BackColor = SystemColors.Control;
+            toolStrip1.ForeColor = Color.Black;*/
+
+                    //If custom font color...(ORIGINAL)
+                    /*if (chosenColor != null)
+                    {//Ask if the user wants to keep it
+                        string keepColor = Prompt.ShowDialog("Would you like to keep your custom font color?", "Keep font color?").ToUpper();
+
+                        if (keepColor == "YES")
+                        {//User wants to keep his custom font color
+                            rtb.ForeColor = Color.FromName(chosenColor);
+                        }
+                        else
+                        {//User doesn't want to keep custom font color, trash custom color reference
+                            chosenColor = null;
+                        }
+                    }*/
+                    //If custom font color...
+                    /* if (chosenColor != null)
+                     {//Keep the custom font color
+                         rtb.ForeColor = Color.FromName(chosenColor);
+                     }*/
+            }
+
+            //Randomize function for rolling dice and printing output both
+            private void Randomize(int quant, int dimen)
+        {
+            //set up a sub total for private use & add one to number of rolls
+            //display sum total if two or more dice types are used
             int subTotal = 0;
             NumTypesRolled += 1;
 
@@ -54,7 +174,7 @@ namespace DiceRollerStandalone
             //Postfix incrementation on dimen so max value of roll is not truncated
             //but correct value is displayed on d, incrementation is applied after this instruction
             //now using string builder instead of textbox+=string to increase efficiency
-            StringBuilder sbRolls = new StringBuilder("d" + dimen++.ToString() + ": ");
+            StringBuilder sbRolls = new StringBuilder("d" + dimen++ + ": ");
 
             //New Random number, created every Randomize(), placed right before for-loop to work properly
             Random r = new Random();
@@ -128,7 +248,7 @@ namespace DiceRollerStandalone
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            ChangeTheme(2);
         }
 
         private void btnGen_Click(object sender, EventArgs e)
@@ -341,6 +461,21 @@ namespace DiceRollerStandalone
                     MessageBox.Show(error.Message);
                 }
             }
+        }
+
+        private void defaultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeTheme(0);
+        }
+
+        private void darkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeTheme(1);
+        }
+
+        private void whiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeTheme(2);
         }
     }
 }
