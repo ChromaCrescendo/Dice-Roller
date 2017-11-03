@@ -154,7 +154,6 @@
             this.txtD4.Name = "txtD4";
             this.txtD4.Size = new System.Drawing.Size(100, 20);
             this.txtD4.TabIndex = 10;
-            this.txtD4.TextChanged += new System.EventHandler(this.txtD4_TextChanged);
             // 
             // txtD6
             // 
@@ -162,7 +161,6 @@
             this.txtD6.Name = "txtD6";
             this.txtD6.Size = new System.Drawing.Size(100, 20);
             this.txtD6.TabIndex = 11;
-            this.txtD6.TextChanged += new System.EventHandler(this.txtD6_TextChanged);
             // 
             // txtD8
             // 
@@ -170,7 +168,6 @@
             this.txtD8.Name = "txtD8";
             this.txtD8.Size = new System.Drawing.Size(100, 20);
             this.txtD8.TabIndex = 12;
-            this.txtD8.TextChanged += new System.EventHandler(this.txtD8_TextChanged);
             // 
             // txtD10
             // 
@@ -178,7 +175,6 @@
             this.txtD10.Name = "txtD10";
             this.txtD10.Size = new System.Drawing.Size(100, 20);
             this.txtD10.TabIndex = 13;
-            this.txtD10.TextChanged += new System.EventHandler(this.txtD10_TextChanged);
             // 
             // txtD12
             // 
@@ -186,7 +182,6 @@
             this.txtD12.Name = "txtD12";
             this.txtD12.Size = new System.Drawing.Size(100, 20);
             this.txtD12.TabIndex = 14;
-            this.txtD12.TextChanged += new System.EventHandler(this.txtD12_TextChanged);
             // 
             // txtD20
             // 
@@ -194,7 +189,6 @@
             this.txtD20.Name = "txtD20";
             this.txtD20.Size = new System.Drawing.Size(100, 20);
             this.txtD20.TabIndex = 15;
-            this.txtD20.TextChanged += new System.EventHandler(this.txtD20_TextChanged);
             // 
             // txtDquant
             // 
@@ -204,7 +198,6 @@
             this.txtDquant.TabIndex = 16;
             this.txtDquant.Text = "Custom Quantity";
             this.txtDquant.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtDquant_MouseClick);
-            this.txtDquant.TextChanged += new System.EventHandler(this.txtDquant_TextChanged);
             this.txtDquant.Leave += new System.EventHandler(this.txtDquant_Leave);
             // 
             // txtDdimen
@@ -215,7 +208,6 @@
             this.txtDdimen.TabIndex = 17;
             this.txtDdimen.Text = "Custom Dimension";
             this.txtDdimen.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtDdimen_MouseClick);
-            this.txtDdimen.TextChanged += new System.EventHandler(this.txtDdimen_TextChanged);
             this.txtDdimen.Leave += new System.EventHandler(this.txtDdimen_Leave);
             // 
             // label7
@@ -252,7 +244,7 @@
             // 
             this.btnClear.BackColor = System.Drawing.Color.Transparent;
             this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnClear.Location = new System.Drawing.Point(267, 231);
+            this.btnClear.Location = new System.Drawing.Point(267, 122);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 22;
@@ -343,7 +335,7 @@
             // 
             this.saveInputsToolStripMenuItem.Enabled = false;
             this.saveInputsToolStripMenuItem.Name = "saveInputsToolStripMenuItem";
-            this.saveInputsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveInputsToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.saveInputsToolStripMenuItem.Text = "Save Inputs";
             this.saveInputsToolStripMenuItem.Visible = false;
             // 
@@ -557,7 +549,7 @@
             // 
             this.darkToolStripMenuItem.Enabled = false;
             this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
-            this.darkToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.darkToolStripMenuItem.Text = "Dark";
             this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
             // 
@@ -572,7 +564,7 @@
             // 
             this.btnGen.BackColor = System.Drawing.Color.Transparent;
             this.btnGen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnGen.Location = new System.Drawing.Point(267, 271);
+            this.btnGen.Location = new System.Drawing.Point(267, 160);
             this.btnGen.Name = "btnGen";
             this.btnGen.Size = new System.Drawing.Size(75, 23);
             this.btnGen.TabIndex = 21;

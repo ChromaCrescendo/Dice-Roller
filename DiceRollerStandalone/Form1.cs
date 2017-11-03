@@ -54,25 +54,10 @@ namespace DiceRollerStandalone
                     darkToolStripMenuItem.Checked = false;
                     whiteToolStripMenuItem.Checked = false;
 
-                    Form1.ActiveForm.BackColor = SystemColors.Control;
-                    //tableLayoutPanel1.BackColor = SystemColors.Control;
-                    Form1.ActiveForm.ForeColor = Color.Black;
+                    this.BackColor = SystemColors.Control;
+                    this.ForeColor = Color.Black;
                     menuStrip1.BackColor = SystemColors.Control;
                     this.BackgroundImage = null;
-                    /*toolStrip1.BackColor = SystemColors.Control;
-                    toolStrip1.ForeColor = Color.Black;
-
-                    tbPack.ForeColor = Color.Black;
-                    tbPack.BackColor = Color.White;
-                    lbPossibles.ForeColor = Color.Black;
-                    lbPossibles.BackColor = Color.White;
-                    lbDraws.ForeColor = Color.Black;
-                    lbDraws.BackColor = Color.White;
-                    //Form1.ActiveForm.BackColor = menuStrip1.BackColor
-                    tableLayoutPanel1.BackgroundImage = null;
-                    tableLayoutPanel1.ForeColor = Color.Black;
-                    tableLayoutPanel1.BackColor = SystemColors.Control;*/
-
                     break;
                 //Dark marble theme
                 case 1:
@@ -81,24 +66,9 @@ namespace DiceRollerStandalone
                     defaultToolStripMenuItem.Checked = false;
 
                     menuStrip1.BackColor = Color.Transparent;
-                    /*lbDraws.BackColor = SystemColors.ControlDarkDark;
-                    lbPossibles.BackColor = SystemColors.ControlDarkDark;
-                    tbPack.BackColor = SystemColors.ControlDarkDark;
-                    tbPack.ForeColor = Color.WhiteSmoke;
-                    lbDraws.ForeColor = Color.WhiteSmoke;
-                    lbPossibles.ForeColor = Color.WhiteSmoke;
-                    tbPack.BorderStyle = BorderStyle.FixedSingle;
-                    lbDraws.BorderStyle = BorderStyle.FixedSingle;
-                    lbPossibles.BorderStyle = BorderStyle.FixedSingle;*/
                     this.BackgroundImage = global::DiceRollerStandalone.Properties.Resources.black;
-                    //tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-                    //tableLayoutPanel1.ForeColor = Color.WhiteSmoke;
-                    //btnGen.BackgroundImage = global::PackGenCsharp.Properties.Resources.marble_black;
-                    //btnPick.BackgroundImage = global::PackGenCsharp.Properties.Resources.marble_black;
                     btnClear.FlatStyle = FlatStyle.Popup;
                     btnGen.FlatStyle = FlatStyle.Popup;
-                    //btnPick.BackgroundImageLayout = BackgroundImageLayout.Center*/
-
                     break;
                 //White Marble theme
                 case 2:
@@ -107,23 +77,8 @@ namespace DiceRollerStandalone
                     darkToolStripMenuItem.Checked = false;
 
                     menuStrip1.BackColor = Color.Transparent;
-                    /*lbDraws.BackColor = Color.White;
-                    lbPossibles.BackColor = Color.White;
-                    tbPack.BackColor = Color.White;
-                    tbPack.ForeColor = Color.Black;
-                    lbDraws.ForeColor = Color.Black;
-                    lbPossibles.ForeColor = Color.Black;
-                    tbPack.BorderStyle = BorderStyle.FixedSingle;
-                    lbDraws.BorderStyle = BorderStyle.FixedSingle;
-                    lbPossibles.BorderStyle = BorderStyle.FixedSingle;
-                    tableLayoutPanel1.BackgroundImage = global::PackGenCsharp.Properties.Resources.marble_white;
-                    tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-                    tableLayoutPanel1.ForeColor = Color.Black;
-                    //btnGen.BackgroundImage = global::PackGenCsharp.Properties.Resources.marble_black;
-                    //btnPick.BackgroundImage = global::PackGenCsharp.Properties.Resources.marble_black;*/
                     btnGen.FlatStyle = FlatStyle.Popup;
                     btnClear.FlatStyle = FlatStyle.Popup;
-                    //btnPick.BackgroundImageLayout = BackgroundImageLayout.Center
                     this.BackgroundImage = global::DiceRollerStandalone.Properties.Resources.white;
                     break;
             }
@@ -226,26 +181,6 @@ namespace DiceRollerStandalone
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             ChangeTheme(2);
@@ -320,45 +255,6 @@ namespace DiceRollerStandalone
 
         }
 
-        private void txtD4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtD6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtD8_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtD10_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtD12_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtD20_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDdimen_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDquant_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         //For both custom text fields, on mouse click, if set to defaul text value, clear it for immediate typing from user
         private void txtDdimen_MouseClick(object sender, MouseEventArgs e)
         {
