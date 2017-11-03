@@ -80,12 +80,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\marble-black.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\marble-white.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\white.png" />
     <None Include="Resources\black.png" />
   </ItemGroup>
