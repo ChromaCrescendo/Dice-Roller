@@ -94,7 +94,7 @@ namespace DiceRollerStandalone
             btnGen.ForeColor = Form1.ActiveForm.ForeColor;
             btnGen.BackColor = Form1.ActiveForm.BackColor;
             toolStrip1.BackColor = SystemColors.Control;
-            toolStrip1.ForeColor = Color.Black;*/
+            toolStrip1.ForeColor = Color.Black;
 
                     //If custom font color...(ORIGINAL)
                     /*if (chosenColor != null)
