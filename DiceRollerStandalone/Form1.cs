@@ -35,6 +35,8 @@ namespace DiceRollerStandalone
 
         int SumTotal;
 
+        bool SubTotalled = true;
+        bool SumTotalled = true;
         /*bool rolled = false;
         bool FinishedRolls = false;*/
 
@@ -145,10 +147,16 @@ namespace DiceRollerStandalone
                 //only add plus if there's another roll coming
                 if (i < (quant - 1))
                 {
-                    sbRolls.Append("+");
+                    if (SubTotalled == true)
+                    {
+                        sbRolls.Append("+");
+                    } else
+                    {
+                        sbRolls.Append(",");
+                    }
                 }
             }
-            if (quant > 1)
+            if (quant > 1 && SubTotalled == true)
             {
                 //add equals sign and sub total
                 sbRolls.Append("=" + subTotal);
@@ -178,6 +186,14 @@ namespace DiceRollerStandalone
             else
             {
                 return false;
+            }
+        }
+
+        private void  GenStats()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Randomize(3, 6);
             }
         }
 
@@ -245,10 +261,10 @@ namespace DiceRollerStandalone
             }
 
             //Initialize total number of selected dice in every quantity
-            //numDiceTotal = (numD4 + numD6 + numD8 + numD10 + numD12 + numD20 + numDquant);
+            //numDiceTotal = (numD4 + numD6 + numD8 + numD10 + numD12 + numD20 + numDquant);-
 
             //If rolling two or more dice display a sum total
-            if (NumTypesRolled >= 2)
+            if (NumTypesRolled >= 2 && SumTotalled == true)
             {
                 txtOutput.Text += "Sum Total=" + SumTotal + "\r\n";
             }
@@ -374,6 +390,38 @@ namespace DiceRollerStandalone
         private void whiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChangeTheme(2);
+        }
+
+        private void generateStatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GenStats();
+        }
+
+        private void subTotalledToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (subTotalledToolStripMenuItem.Checked == true)
+            {
+                subTotalledToolStripMenuItem.Checked = false;
+                SubTotalled = false;
+            } else
+            {
+                subTotalledToolStripMenuItem.Checked = true;
+                SubTotalled = true;
+            }
+        }
+
+        private void sumTotalledToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (sumTotalledToolStripMenuItem.Checked == true)
+            {
+                sumTotalledToolStripMenuItem.Checked = false;
+                SumTotalled = false;
+            }
+            else
+            {
+                sumTotalledToolStripMenuItem.Checked = true;
+                SumTotalled = true;
+            }
         }
     }
 }
