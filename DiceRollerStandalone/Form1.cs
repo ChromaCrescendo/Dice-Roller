@@ -322,7 +322,9 @@ namespace DiceRollerStandalone
                 try
                 {
                     string filePath = savefile.FileName;
-                    File.WriteAllText(filePath, txtOutput.Text);
+                    //write all text function writes a single string to an output file
+                    //write all lines function writes an array to an output file, use with the textboxes for custom inputs
+                    File.WriteAllText(filePath, txtOutput.Text, Encoding.UTF8);
                     MessageBox.Show("File Written to: " + filePath);
                 }
                 //throw error message for every exception
