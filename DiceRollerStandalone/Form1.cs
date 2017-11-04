@@ -38,7 +38,7 @@ namespace DiceRollerStandalone
         bool SubTotalled = true;
         bool SumTotalled = true;
         /*bool rolled = false;
-        bool FinishedRolls = false;*/
+        bool FinishedRolls = false; */
 
         public Form1()
         {
