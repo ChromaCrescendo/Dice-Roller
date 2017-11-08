@@ -14,6 +14,8 @@ namespace DiceRollerStandalone
     public partial class Form1 : Form
     {
         //Global Vars
+        //New Random number
+        Random r = new Random();
         //number of dice types rolled per calculation, for use with sum total
         int NumTypesRolled;
         //Total quantity declared per dimension
@@ -38,7 +40,7 @@ namespace DiceRollerStandalone
         bool SubTotalled = true;
         bool SumTotalled = true;
         /*bool rolled = false;
-        bool FinishedRolls = false; */
+        bool FinishedRolls = false;*/
 
         public Form1()
         {
@@ -133,9 +135,6 @@ namespace DiceRollerStandalone
             //now using string builder instead of textbox+=string to increase efficiency
             StringBuilder sbRolls = new StringBuilder("d" + dimen++ + ": ");
 
-            //New Random number, created every Randomize(), placed right before for-loop to work properly
-            Random r = new Random();
-
             //for loop per quantity of rolls with that die
             for (int i = 0; i < quant; i++)
             {//store rolled number in private int for reference
@@ -146,7 +145,7 @@ namespace DiceRollerStandalone
                 subTotal += rolledNum;
                 //only add plus if there's another roll coming
                 if (i < (quant - 1))
-                {
+                {//comma instead if sub total is turned off
                     if (SubTotalled == true)
                     {
                         sbRolls.Append("+");
@@ -158,7 +157,7 @@ namespace DiceRollerStandalone
             }
             if (quant > 1 && SubTotalled == true)
             {
-                //add equals sign and sub total
+                //add equals sign and sub total if more than one die and sub total turned on
                 sbRolls.Append("=" + subTotal);
             }
             //Add new line after rolling all of one dice type
@@ -194,6 +193,25 @@ namespace DiceRollerStandalone
             for (int i = 0; i < 6; i++)
             {
                 Randomize(3, 6);
+            }
+        }
+
+        void Clear(bool top, bool bottom)
+        {
+            if (top == true)
+            {
+                txtD4.Text = "";
+                txtD6.Text = "";
+                txtD8.Text = "";
+                txtD10.Text = "";
+                txtD12.Text = "";
+                txtD20.Text = "";
+                txtDdimen.Text = Default1;
+                txtDquant.Text = Default2;
+            }
+            if (bottom == true)
+            {
+                txtOutput.Text = "";
             }
         }
 
@@ -422,6 +440,21 @@ namespace DiceRollerStandalone
                 sumTotalledToolStripMenuItem.Checked = true;
                 SumTotalled = true;
             }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            allToolStripMenuItem_Click(sender, e);
+        }
+
+        private void allToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clear(true, true);
+        }
+
+        private void bottomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clear(false, true);
         }
     }
 }
